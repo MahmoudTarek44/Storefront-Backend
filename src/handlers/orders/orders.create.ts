@@ -8,7 +8,7 @@ const orderModel = new OrdersModel();
 const create = async (req: Request, res: Response) => {
 	try {
 		let products = req.body.products as unknown as productOrder[];
-		const status = req.body.status as unknown as boolean;
+		const status = req.body.status as unknown as string;
 		const user_id = req.body.user_id as unknown as number;
 
 		await orderModel

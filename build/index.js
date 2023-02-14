@@ -23,3 +23,4 @@ connection_1.default
     .catch((error) => {
     throw new Error(`Database connection has error: ${error}`);
 });
+exports.default = app;

@@ -1,54 +1,139 @@
-# Storefront Backend Project
+# Project: Storefront backend
 
-## Getting Started
+## Quick overview
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+- It's the second test project in **FWD initiative** sponsered by the **Egyptian Government** for the _Advanced Wep development track_ at **UDACITY**.
 
-## Required Technologies
-Your application must make use of the following libraries:
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+-This project requires to create an **Storefront backend** to make the user able to resize there images.
 
-## Steps to Completion
+- A perfect example of implementing of what we've learnt so far in the course **Backend-development using Node.js, Express.js ,postgres database, JWT and bcrypt for authentication and authorization & Tesing with Jasmine**.
 
-### 1. Plan to Meet Requirements
+## The Auther:
 
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
+- I'm **Mahmoud Tarek Mahmoud Ali**.
 
-Your first task is to read the requirements and update the document with the following:
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
-**Example**: A SHOW route: 'blogs/:id' [GET] 
+## Table of Contents:
 
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
+### How to use the API:
+#### step 1:
+- Add an **.env** file in the root directory to configure all the variable needed to run the app or connect to database
 
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
+#### database port = 5432
+#### server port = 4000
 
-### 2.  DB Creation and Migrations
+``` .env
+POSTGRES_HOST = 127.0.0.1
+POSTGRES_DB = storefront
+POSTGRES_PORT = 5432
+POSTGRES_DB_TEST = storetest
+POSTGRES_PORT_TEST = 5434
 
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
+POSTGRES_USER = postgres
+POSTGRES_PASSWORD = 140597
 
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
+BCRYPT_PASSWORD = storefrontbcrypt
+SECRET = storefrontsecret
+SALT_ROUNDS = 10
 
-### 3. Models
+APPLICATION_PORT = 4000
+ENV = dev
+```
 
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
+#### step 2:
+- Add a **database.json** file and add the following configuration
 
-### 4. Express Handlers
+``` .json
+{
+    "dev": {
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "port": 5432,
+        "database": "storefront",
+        "user": "postgres",
+        "password": "140597"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "port": 5434,
+        "database": "storetest",
+        "user": "postgres",
+        "password": "140597"
+    }
+}
+```
+#### step 3:
+- Add docker configuration file (docker-compose.yml) and add the following
 
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
+``` .yml
+version: '3.9'
 
-### 5. JWTs
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
 
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
+volumes:
+  postgres:
 
-### 6. QA and `README.md`
+```
+#### step 4:
+- Installation process:
+1. run docker > ```docker-compose up```
+2. install dependencies > ```npm install ```
+3. run database migrations > ```npm run databse-up```
+4. build the application > ```npm run build ```
+5. start the app and the server > ``` npm run dev ```
 
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
+#### step 5:
+- User for example these endpoints to communicate with server and the database.
+**baseURL**: ```http://localhost:4000```
+**some EndPoints**:
+1. create new user : ```users/create```
+1. create new product : ```products/create```
+1. create new order : ```orders/create```
+1. get all users : ```users/getAll```
+1. get all products : ```products/getAll```
+1. get single user : ```users/getOne```
+1. get single product : ```products/getOne```
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+#### The Technologies used:
+
+1. Node.js
+2. Express.js
+3. TypeScript
+4. postgres
+5. pg
+6. JWT
+7. Bcrypt
+8. Jasmine
+9. Prettier
+10. ESlint
+11. supertest
+
+
+#### The code Editor:
+
+- Visual Studio Code.
+
+#### Sources:
+
+1. Mainly => _UDACITY Class room_
+   [Udacity](https://classroom.udacity.com/me)
+   -Following the tips , notes and the instructions within the material of the course.
+
+2. _Node.js & Express_
+   [Node.js](https://nodejs.org/en/about/)
+   [Express](https://expressjs.com/)
+
+3. _Markdown Guide_
+   [Markdownguide](https://www.markdownguide.org/cheat-sheet/)
+   -Guide to write the proper code in markdown language
+
+4. _JWT_ 
+   [JsonWebToken](https://jwt.io/)

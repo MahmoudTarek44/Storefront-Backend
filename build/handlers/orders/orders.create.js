@@ -12,24 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const userModel_1 = __importDefault(require("../../models/userModel"));
-const authentication_middleware_1 = require("../../middlewares/authentication.middleware");
-const userModel = new userModel_1.default();
+const orderModel_1 = __importDefault(require("../../models/orderModel"));
+const orderModel = new orderModel_1.default();
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const first_name = req.body.first_name;
-        const last_name = req.body.last_name;
-        const user_password = req.body.password;
-        yield userModel.create({
-            first_name,
-            last_name,
-            user_password,
-        })
-            .then((user) => {
-            res.status(201).send({ data: (0, authentication_middleware_1.getUserToken)(user) });
+        let products = req.body.products;
+        const status = req.body.status;
+        const user_id = req.body.user_id;
+        yield orderModel
+            .create({ products, status, user_id })
+            .then((order) => {
+            res.status(201).send({ data: order });
         })
             .catch((error) => {
-            res.status(400).send({ message: error });
+            res.status(401).send({ message: error });
         });
     }
     catch (error) {

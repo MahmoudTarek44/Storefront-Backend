@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { Secret } from "jsonwebtoken";
-import { User } from "../handlers/users/users.add";
+import { User } from "../types/app.types";
 
 const SECRET = process.env.SECRET as Secret;
 

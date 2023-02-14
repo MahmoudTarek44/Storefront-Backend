@@ -12,28 +12,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const userModel_1 = __importDefault(require("../../models/userModel"));
-const authentication_middleware_1 = require("../../middlewares/authentication.middleware");
-const userModel = new userModel_1.default();
-const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getById = exports.get = void 0;
+const productModel_1 = __importDefault(require("../../models/productModel"));
+const productModel = new productModel_1.default();
+const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const first_name = req.body.first_name;
-        const last_name = req.body.last_name;
-        const user_password = req.body.password;
-        yield userModel.create({
-            first_name,
-            last_name,
-            user_password,
-        })
-            .then((user) => {
-            res.status(201).send({ data: (0, authentication_middleware_1.getUserToken)(user) });
+        yield productModel
+            .get()
+            .then((products) => {
+            res.status(200).send({ data: products });
         })
             .catch((error) => {
-            res.status(400).send({ message: error });
+            res.status(404).send({ message: error });
         });
     }
     catch (error) {
         throw error;
     }
 });
-exports.default = create;
+exports.get = get;
+const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield productModel
+            .getById(+req.params.id)
+            .then((product) => {
+            res.status(200).send({ data: product });
+        })
+            .catch((error) => {
+            res.status(404).send({ message: error });
+        });
+    }
+    catch (error) {
+        throw error;
+    }
+});
+exports.getById = getById;

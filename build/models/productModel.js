@@ -13,42 +13,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../database/connection"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
-const { BCRYPT_PASSWORD, SALT_ROUNDS } = process.env;
-class UsersModel {
+class ProductsModel {
     get() {
         return __awaiter(this, void 0, void 0, function* () {
             const connection = yield connection_1.default.connect();
             try {
-                const sql = "SELECT * FROM users";
+                const sql = "SELECT * FROM products";
                 const { rows } = yield connection.query(sql);
                 connection.release();
                 return rows;
             }
             catch (err) {
                 connection.release();
-                throw new Error(`Error occured: ${err}`);
+                throw new Error(`Error Occured: ${err}`);
             }
         });
     }
-    create(user) {
+    create(product) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { first_name: first_name, last_name: last_name, user_password, } = user;
+            const { product_name, price } = product;
             const connection = yield connection_1.default.connect();
             try {
-                const sql = `INSERT INTO users (first_name, last_name, user_password) VALUES($1, $2, $3) RETURNING *`;
-                const hash = bcrypt_1.default.hashSync(user_password + BCRYPT_PASSWORD, parseInt(SALT_ROUNDS, 10));
-                const { rows } = yield connection.query(sql, [
-                    first_name,
-                    last_name,
-                    hash,
-                ]);
+                const sql = "INSERT INTO products (product_name, price) VALUES($1, $2) RETURNING *";
+                const { rows } = yield connection.query(sql, [product_name, price]);
                 connection.release();
                 return rows[0];
             }
             catch (err) {
                 connection.release();
-                throw new Error(`error occured: ${err}`);
+                throw new Error(`Error occured:  ${err}`);
             }
         });
     }
@@ -56,37 +49,16 @@ class UsersModel {
         return __awaiter(this, void 0, void 0, function* () {
             const connection = yield connection_1.default.connect();
             try {
-                const sql = "SELECT * FROM users WHERE id=($1)";
+                const sql = "SELECT * FROM products WHERE id=($1)";
                 const { rows } = yield connection.query(sql, [id]);
                 connection.release();
                 return rows[0];
             }
             catch (err) {
                 connection.release();
-                throw new Error(`Error occured: ${err}`);
-            }
-        });
-    }
-    login(user_name, password) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const connection = yield connection_1.default.connect();
-            try {
-                const sql = "SELECT * FROM users WHERE user_name=($1)";
-                const { rows } = yield connection.query(sql, [user_name]);
-                if (rows.length > 0) {
-                    const user = rows[0];
-                    if (bcrypt_1.default.compareSync(password + BCRYPT_PASSWORD, user.user_password)) {
-                        return user;
-                    }
-                }
-                connection.release();
-                return null;
-            }
-            catch (err) {
-                connection.release();
-                throw new Error(`Error occured: ${err}`);
+                throw new Error(`Error occured:  ${err}`);
             }
         });
     }
 }
-exports.default = UsersModel;
+exports.default = ProductsModel;
