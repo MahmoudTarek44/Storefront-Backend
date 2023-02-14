@@ -14,7 +14,7 @@ export interface User {
 export interface Order {
 	id?: number;
 	user_id: number;
-	status: boolean;
+	status: string;
 	products: productOrder[];
 }
 

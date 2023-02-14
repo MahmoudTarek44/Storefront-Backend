@@ -22,3 +22,5 @@ dbConnect
 	.catch((error: Error) => {
 		throw new Error(`Database connection has error: ${error}`);
 	});
+
+export default app;
