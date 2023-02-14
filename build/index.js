@@ -17,8 +17,8 @@ app.listen(port, () => {
 });
 connection_1.default
     .connect()
-    .then((db) => {
-    console.log(db);
+    .then(() => {
+    console.log("Database is connected successfully...");
 })
     .catch((error) => {
     throw new Error(`Database connection has error: ${error}`);

@@ -17,7 +17,7 @@ app.listen(port, () => {
 dbConnect
 	.connect()
 	.then(() => {
-		console.log("connected successfully");
+		console.log("Database is connected successfully...");
 	})
 	.catch((error: Error) => {
 		throw new Error(`Database connection has error: ${error}`);

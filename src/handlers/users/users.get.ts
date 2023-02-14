@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { User } from "./users.add";
 
 import UserModel from "../../models/userModel";
+import { User } from "../../types/app.types";
 
 const userModel = new UserModel();
 
-const get = async (req: Request, res: Response) => {
+const get = async (req: Request, res: Response): Promise<void> => {
 	try {
 		await userModel
 			.get()
@@ -20,7 +20,7 @@ const get = async (req: Request, res: Response) => {
 	}
 };
 
-const getById = async (req: Request, res: Response) => {
+const getById = async (req: Request, res: Response): Promise<void> => {
 	try {
 		await userModel
 			.getById(+req.params.id)

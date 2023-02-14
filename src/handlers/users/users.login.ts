@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import UserModel from "../../models/userModel";
-import { getUserToken } from "../authentication/authentication.middleware";
-import { User } from "./users.add";
+
+import { getUserToken } from "../../middlewares/authentication.middleware";
+import { User } from "../../types/app.types";
 
 const userModel = new UserModel();
 

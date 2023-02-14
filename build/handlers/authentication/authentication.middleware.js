@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkAuthHeader = exports.getUserToken = void 0;
+exports.getAuthHeader = exports.getUserToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const SECRET = process.env.SECRET;
 const getUserToken = (user) => {
@@ -11,7 +11,7 @@ const getUserToken = (user) => {
     return token;
 };
 exports.getUserToken = getUserToken;
-const checkAuthHeader = (req, res, next) => {
+const getAuthHeader = (req, res, next) => {
     if (!req.headers.authorization) {
         res.status(401).send("Authorization token is missing");
         return false;
@@ -31,4 +31,4 @@ const checkAuthHeader = (req, res, next) => {
         return false;
     }
 };
-exports.checkAuthHeader = checkAuthHeader;
+exports.getAuthHeader = getAuthHeader;
