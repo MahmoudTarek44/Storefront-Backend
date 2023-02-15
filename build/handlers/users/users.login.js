@@ -16,18 +16,13 @@ const userModel_1 = __importDefault(require("../../models/userModel"));
 const authentication_middleware_1 = require("../../middlewares/authentication.middleware");
 const userModel = new userModel_1.default();
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user_name = req.body.user_name;
-        const password = req.body.password;
-        yield userModel
-            .login(user_name, password)
-            .then((user) => res.status(200).send({ data: (0, authentication_middleware_1.getUserToken)(user) }))
-            .catch((error) => {
-            res.status(401).send({ message: error });
-        });
-    }
-    catch (error) {
-        throw error;
-    }
+    const user_name = req.body.user_name;
+    const password = req.body.password;
+    yield userModel
+        .login(user_name, password)
+        .then((user) => res.status(200).send({ data: (0, authentication_middleware_1.getUserToken)(user) }))
+        .catch((error) => {
+        res.status(401).send({ message: error });
+    });
 });
 exports.default = login;

@@ -14,7 +14,7 @@ describe("users module testing", () => {
 	};
 
 	let token: string,
-		userId: number = 1;
+		userId = 1;
 
 	it("Must have Authorization token to use users router", async () => {
 		await request.get("/users").then((res) => {

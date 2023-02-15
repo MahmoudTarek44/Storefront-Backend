@@ -1,24 +1,28 @@
-export interface Product {
+interface Product {
 	id?: number;
 	product_name: string;
 	price: number;
 }
 
-export interface User {
+interface User {
 	id?: number;
 	first_name: string;
 	last_name: string;
 	user_password: string;
 }
 
-export interface Order {
+interface Order {
 	id?: number;
 	user_id: number;
 	status: string;
-	products: productOrder[];
+	products: orderProducts[];
 }
 
-export interface productOrder {
+interface orderProducts {
+	id?: number;
+	order_id: number;
 	product_id: number;
 	quantity: number;
 }
+
+export { Product, User, Order, orderProducts };

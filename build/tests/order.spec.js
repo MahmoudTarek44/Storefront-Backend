@@ -49,7 +49,7 @@ describe("Orders module testing", () => {
                 },
             ],
             user_id,
-            status: 'completed',
+            status: "completed",
         };
     }));
     it("creating new order", (done) => {
