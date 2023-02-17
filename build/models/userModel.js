@@ -33,15 +33,12 @@ class UsersModel {
     }
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { 
-            // user_name,
-            first_name, last_name, user_password, } = user;
+            const { first_name, last_name, user_password, } = user;
             const connection = yield connection_1.default.connect();
             try {
                 const sql = `INSERT INTO users (first_name, last_name, user_password) VALUES($1, $2, $3 ) RETURNING *`;
                 const hash = bcrypt_1.default.hashSync(user_password + BCRYPT_PASSWORD, parseInt(SALT_ROUNDS, 10));
                 const { rows } = yield connection.query(sql, [
-                    // user_name,
                     first_name,
                     last_name,
                     hash,

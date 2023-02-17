@@ -23,7 +23,6 @@ createUser.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const user_password = req.body.password;
     yield userModel
         .create({
-        // user_name,
         first_name,
         last_name,
         user_password,

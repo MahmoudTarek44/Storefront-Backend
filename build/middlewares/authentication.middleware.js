@@ -23,7 +23,7 @@ const getAuthHeader = (req, res, next) => {
     }
     catch (error) {
         res.status(401).send({
-            message: `error occured within Authorization token`,
+            message: `error occured checking Authorization token`,
             error: error,
         });
         return false;

@@ -22,7 +22,9 @@ loginUser.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const password = req.body.password;
     yield userModel
         .login(user_name, password)
-        .then((user) => res.status(200).send({ data: (0, authentication_middleware_1.getUserToken)(user) }))
+        .then((user) => res
+        .status(200)
+        .send({ message: "Logged in successfully", token: (0, authentication_middleware_1.getUserToken)(user) }))
         .catch((error) => {
         res.status(401).send({ message: error });
     });

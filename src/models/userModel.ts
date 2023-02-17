@@ -20,7 +20,6 @@ class UsersModel {
 
   async create(user: User): Promise<User> {
     const {
-      // user_name,
       first_name,
       last_name,
       user_password,
@@ -34,7 +33,6 @@ class UsersModel {
         parseInt(SALT_ROUNDS as string, 10)
       );
       const { rows } = await connection.query(sql, [
-        // user_name,
         first_name,
         last_name,
         hash,

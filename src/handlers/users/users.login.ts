@@ -14,7 +14,9 @@ loginUser.post("/", async (req: Request, res: Response) => {
 	await userModel
 		.login(user_name, password)
 		.then((user: User | null) =>
-			res.status(200).send({ data: getUserToken(user) })
+			res
+				.status(200)
+				.send({ message: "Logged in successfully", token: getUserToken(user) })
 		)
 		.catch((error: Error) => {
 			res.status(401).send({ message: error });

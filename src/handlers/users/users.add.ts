@@ -15,7 +15,6 @@ createUser.post("/", async (req: Request, res: Response) => {
 
 	await userModel
 		.create({
-			// user_name,
 			first_name,
 			last_name,
 			user_password,
