@@ -1,11 +1,12 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 
 import UserModel from "../../models/userModel";
 import { User } from "../../types/app.types";
 
 const userModel = new UserModel();
+const getUser = express.Router();
 
-const get = async (req: Request, res: Response): Promise<void> => {
+getUser.get("/", async (req: Request, res: Response): Promise<void> => {
 	await userModel
 		.get()
 		.then((users: User[]) => {
@@ -14,9 +15,9 @@ const get = async (req: Request, res: Response): Promise<void> => {
 		.catch((error: Error) => {
 			res.status(400).send(error);
 		});
-};
+});
 
-const getById = async (req: Request, res: Response): Promise<void> => {
+getUser.get("/:id", async (req: Request, res: Response): Promise<void> => {
 	await userModel
 		.getById(+req.params.id)
 		.then((user: User) => {
@@ -25,6 +26,6 @@ const getById = async (req: Request, res: Response): Promise<void> => {
 		.catch((error: Error) => {
 			res.status(400).send({ message: error });
 		});
-};
+});
 
-export { get, getById };
+export default getUser;

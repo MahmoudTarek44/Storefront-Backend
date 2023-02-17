@@ -44,6 +44,7 @@ describe("Orders module testing", () => {
       products: [
         {
           product_id,
+          order_id,
           quantity: 100,
         },
       ],

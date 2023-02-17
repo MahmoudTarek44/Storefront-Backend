@@ -20,24 +20,26 @@ class UsersModel {
 
   async create(user: User): Promise<User> {
     const {
-      first_name: first_name,
-      last_name: last_name,
+      // user_name,
+      first_name,
+      last_name,
       user_password,
     } = user;
 
     const connection = await dbConnect.connect();
     try {
-      const sql = `INSERT INTO users (first_name, last_name, user_password) VALUES($1, $2, $3) RETURNING *`;
+      const sql = `INSERT INTO users (first_name, last_name, user_password) VALUES($1, $2, $3 ) RETURNING *`;
       const hash = bcrypt.hashSync(
         user_password + BCRYPT_PASSWORD,
         parseInt(SALT_ROUNDS as string, 10)
       );
       const { rows } = await connection.query(sql, [
+        // user_name,
         first_name,
         last_name,
         hash,
       ]);
-
+      console.log(rows);
       connection.release();
       return rows[0];
     } catch (err) {

@@ -1,18 +1,21 @@
-import { Request, Response } from "express";
+import express, { Request, Response, Router } from "express";
+
 import UserModel from "../../models/userModel";
 
 import { getUserToken } from "../../middlewares/authentication.middleware";
 import { User } from "../../types/app.types";
 
-const userModel = new UserModel();
+const userModel: UserModel = new UserModel();
+const createUser: Router = express.Router();
 
-const create = async (req: Request, res: Response) => {
+createUser.post("/", async (req: Request, res: Response) => {
 	const first_name = req.body.first_name as unknown as string;
 	const last_name = req.body.last_name as unknown as string;
 	const user_password = req.body.password as unknown as string;
 
 	await userModel
 		.create({
+			// user_name,
 			first_name,
 			last_name,
 			user_password,
@@ -23,6 +26,6 @@ const create = async (req: Request, res: Response) => {
 		.catch((error: Error) => {
 			res.status(400).send({ message: error });
 		});
-};
+});
 
-export default create;
+export default createUser;

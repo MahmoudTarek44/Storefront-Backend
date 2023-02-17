@@ -19,7 +19,7 @@ const productModel = new productModel_1.default();
 const orderModel = new orderModel_1.default();
 const userModel = new userModel_1.default();
 describe("Order Model testing", () => {
-    let order, user_id, product_id;
+    let order, user_id, product_id, order_id;
     beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield userModel.create({
             first_name: "test",
@@ -36,6 +36,7 @@ describe("Order Model testing", () => {
             products: [
                 {
                     product_id,
+                    order_id,
                     quantity: 100,
                 },
             ],

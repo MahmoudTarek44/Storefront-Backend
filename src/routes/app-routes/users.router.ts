@@ -2,16 +2,16 @@
 import express from "express";
 
 // handlers
-import { get, getById } from "../../handlers/users/users.get";
-import create from "../../handlers/users/users.add";
+import createUser from "../../handlers/users/users.add";
+import getUser from "../../handlers/users/users.get";
 
 // middlewares
 import { getAuthHeader } from "../../middlewares/authentication.middleware";
 
 const userRouters = express.Router();
 
-userRouters.use("/getAll", getAuthHeader, get);
-userRouters.use("/getOne", getAuthHeader, getById);
-userRouters.use("/create", create);
+userRouters.use("/get", getAuthHeader, getUser);
+userRouters.use("/create", createUser);
 
 export default userRouters;
+ 

@@ -12,10 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
 const userModel_1 = __importDefault(require("../../models/userModel"));
 const authentication_middleware_1 = require("../../middlewares/authentication.middleware");
 const userModel = new userModel_1.default();
-const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const loginUser = express_1.default.Router();
+loginUser.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user_name = req.body.user_name;
     const password = req.body.password;
     yield userModel
@@ -24,5 +26,5 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         .catch((error) => {
         res.status(401).send({ message: error });
     });
-});
-exports.default = login;
+}));
+exports.default = loginUser;

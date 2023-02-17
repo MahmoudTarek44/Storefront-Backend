@@ -8,7 +8,7 @@ const orderModel = new OrdersModel();
 const userModel = new UsersModel();
 
 describe("Order Model testing", () => {
-  let order: Order, user_id: number, product_id: number;
+  let order: Order, user_id: number, product_id: number, order_id:number
 
   beforeAll(async () => {
     const user: User = await userModel.create({
@@ -29,6 +29,7 @@ describe("Order Model testing", () => {
       products: [
         {
           product_id,
+          order_id,
           quantity: 100,
         },
       ],

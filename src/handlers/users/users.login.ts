@@ -1,12 +1,13 @@
-import { Request, Response } from "express";
+import express, { Request, Response, Router } from "express";
 import UserModel from "../../models/userModel";
 
 import { getUserToken } from "../../middlewares/authentication.middleware";
 import { User } from "../../types/app.types";
 
 const userModel = new UserModel();
+const loginUser: Router = express.Router();
 
-const login = async (req: Request, res: Response) => {
+loginUser.post("/", async (req: Request, res: Response) => {
 	const user_name = req.body.user_name as unknown as string;
 	const password = req.body.password as unknown as string;
 
@@ -18,6 +19,6 @@ const login = async (req: Request, res: Response) => {
 		.catch((error: Error) => {
 			res.status(401).send({ message: error });
 		});
-};
+});
 
-export default login;
+export default loginUser;

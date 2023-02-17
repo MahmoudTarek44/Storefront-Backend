@@ -7,8 +7,8 @@ import orderRouters from "./app-routes/orders.router";
 
 const appRoutes = express.Router();
 
-appRoutes.use("/user", userRouters);
-appRoutes.use("/product", productRouters);
-appRoutes.use("/order", orderRouters);
+appRoutes.use("/users", userRouters);
+appRoutes.use("/products", productRouters);
+appRoutes.use("/orders", orderRouters);
 
 export default appRoutes;
