@@ -8,11 +8,11 @@ const userModel = new UserModel();
 const loginUser: Router = express.Router();
 
 loginUser.post("/", async (req: Request, res: Response) => {
-	const user_name = req.body.user_name as unknown as string;
+	const first_name = req.body.first_name as unknown as string;
 	const password = req.body.password as unknown as string;
 
 	await userModel
-		.login(user_name, password)
+		.login(first_name, password)
 		.then((user: User | null) =>
 			res
 				.status(200)

@@ -33,7 +33,7 @@ class UsersModel {
     }
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { first_name, last_name, user_password, } = user;
+            const { first_name, last_name, user_password } = user;
             const connection = yield connection_1.default.connect();
             try {
                 const sql = `INSERT INTO users (first_name, last_name, user_password) VALUES($1, $2, $3 ) RETURNING *`;
@@ -68,12 +68,12 @@ class UsersModel {
             }
         });
     }
-    login(user_name, password) {
+    login(first_name, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const connection = yield connection_1.default.connect();
             try {
-                const sql = "SELECT * FROM users WHERE user_name=($1)";
-                const { rows } = yield connection.query(sql, [user_name]);
+                const sql = "SELECT * FROM users WHERE first_name=($1)";
+                const { rows } = yield connection.query(sql, [first_name]);
                 if (rows.length > 0) {
                     const user = rows[0];
                     if (bcrypt_1.default.compareSync(password + BCRYPT_PASSWORD, user.user_password)) {

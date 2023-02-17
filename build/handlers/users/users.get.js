@@ -20,7 +20,7 @@ getUser.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield userModel
         .get()
         .then((users) => {
-        res.status(200).send(users);
+        res.status(200).send({ data: users });
     })
         .catch((error) => {
         res.status(400).send(error);

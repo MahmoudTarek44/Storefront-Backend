@@ -18,10 +18,10 @@ const authentication_middleware_1 = require("../../middlewares/authentication.mi
 const userModel = new userModel_1.default();
 const loginUser = express_1.default.Router();
 loginUser.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user_name = req.body.user_name;
+    const first_name = req.body.first_name;
     const password = req.body.password;
     yield userModel
-        .login(user_name, password)
+        .login(first_name, password)
         .then((user) => res
         .status(200)
         .send({ message: "Logged in successfully", token: (0, authentication_middleware_1.getUserToken)(user) }))

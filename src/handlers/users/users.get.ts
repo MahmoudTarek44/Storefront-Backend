@@ -10,7 +10,7 @@ getUser.get("/", async (req: Request, res: Response): Promise<void> => {
 	await userModel
 		.get()
 		.then((users: User[]) => {
-			res.status(200).send(users);
+			res.status(200).send({ data: users });
 		})
 		.catch((error: Error) => {
 			res.status(400).send(error);

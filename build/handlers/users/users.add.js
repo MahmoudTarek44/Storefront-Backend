@@ -28,7 +28,11 @@ createUser.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
         user_password,
     })
         .then((user) => {
-        res.status(201).send({ data: (0, authentication_middleware_1.getUserToken)(user) });
+        res.status(201).send({
+            message: "User created successfully",
+            userName: first_name,
+            token: (0, authentication_middleware_1.getUserToken)(user),
+        });
     })
         .catch((error) => {
         res.status(400).send({ message: error });
