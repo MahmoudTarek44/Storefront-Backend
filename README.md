@@ -83,6 +83,7 @@ volumes:
 
 ```
 #### step 4:
+
 - Installation process:
 1. run docker > ```docker-compose up```
 2. install dependencies > ```npm install ```
@@ -92,15 +93,15 @@ volumes:
 
 #### step 5:
 - User for example these endpoints to communicate with server and the database.
-**baseURL**: ```http://localhost:4000```
+**baseURL**: ```http://localhost:4000/```
 **some EndPoints**:
 1. create new user : ```users/create```
 1. create new product : ```products/create```
 1. create new order : ```orders/create```
-1. get all users : ```users/getAll```
-1. get all products : ```products/getAll```
-1. get single user : ```users/getOne```
-1. get single product : ```products/getOne```
+1. get all users : ```users/get```
+1. get all products : ```products/get```
+1. get single user : ```users/get/${id}```
+1. get single product : ```products/get/${id}```
 
 #### The Technologies used:
 

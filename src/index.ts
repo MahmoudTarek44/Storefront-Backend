@@ -6,23 +6,23 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const port = process.env.APPLICATION_PORT;
+const port = process.env.ENV === "test" ? 4001 : process.env.APPLICATION_PORT;
 const app: Express = express();
 app.use(express.json());
 
 app.use("/", appRoutes);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port} ....`);
+	console.log(`Server is running on port ${port} ....`);
 });
 
 dbConnect
-  .connect()
-  .then(() => {
-    console.log("Database is connected successfully...");
-  })
-  .catch((error: Error) => {
-    throw new Error(`Database connection has error: ${error}`);
-  });
+	.connect()
+	.then(() => {
+		console.log("Database is connected successfully...");
+	})
+	.catch((error: Error) => {
+		throw new Error(`Database connection has error: ${error}`);
+	});
 
 export default app;

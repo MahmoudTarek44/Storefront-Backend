@@ -5,17 +5,17 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index [GET]
-- Show [GET]
-- Create [POST] [token required]
+- Index [GET] : Url = `products/get`
+- Show [GET]  : Url = `products/get/${id}`
+- Create [POST] : Url = `products/create` [token required]
 
 #### Users
-- Index [GET] [token required]
-- Show [GET] [token required]
-- Create [POST] [token required]
+- Index [GET] : Url = `users/get` [token required]
+- Show [GET] : Url = `users/get/${id}` [token required] 
+- Create [POST] : Url = `users/create` [token required] 
 
 #### Orders
-- create Order by user (args: user id) [POST] [token required]
+- create [POST] : Url = `orders/create` [token required]
 
 ## Data Shapes
 #### User

@@ -19,7 +19,7 @@ class OrdersModel {
             const { products, status, user_id } = order;
             const connection = yield connection_1.default.connect();
             try {
-                const sql = "INSERT INTO orders (user_id, status) VALUES($1, $2) RETURNING *";
+                const sql = "INSERT INTO orders (user_id, order_status) VALUES($1, $2) RETURNING *";
                 const { rows } = yield connection.query(sql, [user_id, status]);
                 const order = rows[0];
                 const productsArraySql = "INSERT INTO order_products (order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING product_id, quantity";

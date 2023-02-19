@@ -33,7 +33,6 @@ class UsersModel {
 				last_name,
 				hash,
 			]);
-			console.log(rows);
 			connection.release();
 			return rows[0];
 		} catch (err) {

@@ -8,7 +8,7 @@ const getProduct: Router = express.Router();
 getProduct.get("/", async (req: Request, res: Response): Promise<void> => {
 	await productModel
 		.get()
-		.then((products: Product[] | undefined) => {
+		.then((products: Product[]) => {
 			res.status(200).send({ data: products });
 		})
 		.catch((error: Error) => {
@@ -19,7 +19,7 @@ getProduct.get("/", async (req: Request, res: Response): Promise<void> => {
 getProduct.get("/:id", async (req: Request, res: Response): Promise<void> => {
 	await productModel
 		.getById(+req.params.id)
-		.then((product: Product | undefined) => {
+		.then((product: Product) => {
 			res.status(200).send({ data: product });
 		})
 		.catch((error: Error) => {

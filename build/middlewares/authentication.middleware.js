@@ -17,7 +17,8 @@ const getAuthHeader = (req, res, next) => {
         return false;
     }
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization;
+        console.log(req.headers);
         jsonwebtoken_1.default.verify(token, SECRET);
         next();
     }

@@ -4,7 +4,7 @@ import UserModel from "../../models/userModel";
 import { getUserToken } from "../../middlewares/authentication.middleware";
 import { User } from "../../types/app.types";
 
-const userModel = new UserModel();
+const userModel: UserModel = new UserModel();
 const loginUser: Router = express.Router();
 
 loginUser.post("/", async (req: Request, res: Response) => {
