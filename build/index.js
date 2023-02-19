@@ -4,24 +4,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // Modules
-const connection_1 = __importDefault(require("./database/connection"));
-const express_1 = __importDefault(require("express"));
-const app_router_1 = __importDefault(require("./routes/app.router"));
-const dotenv_1 = __importDefault(require("dotenv"));
+var connection_1 = __importDefault(require("./database/connection"));
+var express_1 = __importDefault(require("express"));
+var app_router_1 = __importDefault(require("./routes/app.router"));
+var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const port = process.env.ENV === "test" ? 4001 : process.env.APPLICATION_PORT;
-const app = (0, express_1.default)();
+var port = process.env.ENV === "test" ? 4001 : process.env.APPLICATION_PORT;
+var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use("/", app_router_1.default);
-app.listen(port, () => {
-    console.log(`Server is running on port ${port} ....`);
+app.listen(port, function () {
+    console.log("Server is running on port ".concat(port, " ...."));
 });
 connection_1.default
     .connect()
-    .then(() => {
+    .then(function () {
     console.log("Database is connected successfully...");
 })
-    .catch((error) => {
-    throw new Error(`Database connection has error: ${error}`);
+    .catch(function (error) {
+    throw new Error("Database connection has error: ".concat(error));
 });
 exports.default = app;
